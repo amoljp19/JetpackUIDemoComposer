@@ -38,10 +38,23 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+fun <T : @Composable () -> Unit> someFunction(composable: T) {
+    composable()
+}
+
+@Composable
+fun someFunction(content: @Composable () -> Unit) {
+    content()
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     JetpackUIDemoComposerTheme {
-        Greeting("Jetpack UI Demo Composer")
+        someFunction(){
+            Greeting(name = "amol")
+        }
+        //Greeting("Jetpack UI Demo Composer in some function")
     }
 }
